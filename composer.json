@@ -1,0 +1,70 @@
+{
+    "name": "erikgaal/blade-streamline-icons",
+    "description": "A package to easily make use of Streamline Icons in your Laravel Blade views.",
+    "keywords": [
+        "erikgaal",
+        "laravel",
+        "blade-streamline-icons"
+    ],
+    "homepage": "https://github.com/erikgaal/blade-streamline-icons",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Erik Gaal",
+            "email": "me@erikgaal.nl",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^8.1",
+        "blade-ui-kit/blade-icons": "^1.0",
+        "firebase/php-jwt": "^5.0 | ^6.0",
+        "illuminate/contracts": "^9.0 | ^10.0",
+        "spatie/laravel-package-tools": "^1.14.0"
+    },
+    "require-dev": {
+        "laravel/pint": "^1.0",
+        "nunomaduro/collision": "^6.1",
+        "nunomaduro/larastan": "^2.0.1",
+        "orchestra/testbench": "^8.0",
+        "pestphp/pest": "^1.21",
+        "pestphp/pest-plugin-laravel": "^1.1",
+        "phpstan/extension-installer": "^1.1",
+        "phpstan/phpstan-deprecation-rules": "^1.0",
+        "phpstan/phpstan-phpunit": "^1.0",
+        "phpunit/phpunit": "^9.6"
+    },
+    "autoload": {
+        "psr-4": {
+            "ErikGaal\\BladeStreamlineIcons\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "ErikGaal\\BladeStreamlineIcons\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "post-autoload-dump": "@php ./vendor/bin/testbench package:discover --ansi",
+        "analyse": "vendor/bin/phpstan analyse",
+        "test": "vendor/bin/pest",
+        "test-coverage": "vendor/bin/pest --coverage",
+        "format": "vendor/bin/pint"
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true,
+            "phpstan/extension-installer": true
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "ErikGaal\\BladeStreamlineIcons\\BladeStreamlineIconsServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
