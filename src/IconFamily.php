@@ -8,4 +8,9 @@ class IconFamily
         public readonly string $name,
     ) {
     }
+
+    public function __toString(): string
+    {
+        return $this->name;
+    }
 }

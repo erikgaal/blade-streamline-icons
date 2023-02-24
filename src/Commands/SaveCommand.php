@@ -16,7 +16,7 @@ class SaveCommand extends Command
     public function handle(BladeStreamlineIcons $streamline): int
     {
         $icon = $this->argument('icon');
-        $family = $this->argument('family');
+        $family = $streamline->family($this->argument('family'));
 
         $result = $streamline->download($family, $icon);
 
@@ -26,7 +26,8 @@ class SaveCommand extends Command
             return self::FAILURE;
         }
 
-        $path = $this->option('as') ?? "$family/$icon.svg";
+        $name = $this->option('as') ?? "$family/$icon";
+        $path = $name . ".svg";
 
         $this->save($result, $path);
 

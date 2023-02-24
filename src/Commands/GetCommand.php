@@ -14,7 +14,7 @@ class GetCommand extends Command
     public function handle(BladeStreamlineIcons $streamline): int
     {
         $icon = $this->argument('icon');
-        $family = $this->argument('family');
+        $family = $streamline->family($this->argument('family'));
 
         $result = $streamline->download($family, $icon);
 
