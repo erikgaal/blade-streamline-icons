@@ -3,6 +3,8 @@
 namespace ErikGaal\BladeStreamlineIcons\Commands;
 
 use ErikGaal\BladeStreamlineIcons\BladeStreamlineIcons;
+use ErikGaal\BladeStreamlineIcons\Exceptions\IconAlreadyExistsException;
+use ErikGaal\BladeStreamlineIcons\Exceptions\IconNotFoundException;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Storage;
 use RuntimeException;
@@ -18,21 +20,22 @@ class SaveCommand extends Command
         $icon = $this->argument('icon');
         $family = $streamline->family($this->argument('family'));
 
-        $result = $streamline->download($family, $icon);
-
-        if (! $result) {
-            $this->error("Unable to find icon [$icon] in family [$family]");
-
-            return self::FAILURE;
-        }
-
         $name = $family . '/' . ($this->option('as') ?? $icon);
         $path = $name . ".svg";
 
         try {
-            $this->save($result, $path);
-        } catch (RuntimeException $e) {
-            $this->error($e->getMessage());
+            $streamline->save(
+                family: $family,
+                icon: $icon,
+                path: $path,
+                overwrite: $this->option('force', false)
+            );
+        } catch (IconNotFoundException) {
+            $this->error("Unable to find icon [$icon] in family [$family]");
+
+            return self::FAILURE;
+        } catch (IconAlreadyExistsException) {
+            $this->error("Icon [$icon] in family [$family] already exists. Use --force to overwrite.");
 
             return self::FAILURE;
         }
@@ -40,26 +43,5 @@ class SaveCommand extends Command
         $this->info("Successfully saved icon [$icon] in family [$family] to [$path]");
 
         return self::SUCCESS;
-    }
-
-    private function save(string $icon, string $as): void
-    {
-        $basePath = config('blade-streamline-icons.path');
-        $path = $this->joinPaths($basePath, $as);
-
-        if (! is_dir(dirname($path))) {
-            mkdir(dirname($path), recursive: true);
-        }
-
-        if (file_exists($path) && ! $this->option('force')) {
-            throw new RuntimeException("File [$path] already exists. Use --force to overwrite.");
-        }
-
-        file_put_contents($path, $icon);
-    }
-
-    private function joinPaths($basePath, $path = ''): string
-    {
-        return $basePath.($path != '' ? DIRECTORY_SEPARATOR.ltrim($path, DIRECTORY_SEPARATOR) : '');
     }
 }
