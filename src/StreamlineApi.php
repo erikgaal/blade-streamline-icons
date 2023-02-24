@@ -22,11 +22,11 @@ class StreamlineApi
         ])->baseUrl($this->baseUrl);
     }
 
-    public function search(string $family, string $query): Collection
+    public function search(IconFamily $family, string $query): Collection
     {
         return $this->buildRequest()
             ->get('/v2/search', [
-                'family' => $family,
+                'family' => $family->name,
                 'query' => $query,
             ])
             ->throw()
