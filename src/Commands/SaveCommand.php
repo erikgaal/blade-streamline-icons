@@ -9,7 +9,7 @@ use RuntimeException;
 
 class SaveCommand extends Command
 {
-    public $signature = 'streamline-icons:save {family} {icon} {--as=} {--overwrite}';
+    public $signature = 'streamline-icons:save {family} {icon} {--as=} {--force}';
 
     public $description = 'Save the Streamline icon';
 
@@ -26,10 +26,16 @@ class SaveCommand extends Command
             return self::FAILURE;
         }
 
-        $name = $this->option('as') ?? "$family/$icon";
+        $name = $family . '/' . ($this->option('as') ?? $icon);
         $path = $name . ".svg";
 
-        $this->save($result, $path);
+        try {
+            $this->save($result, $path);
+        } catch (RuntimeException $e) {
+            $this->error($e->getMessage());
+
+            return self::FAILURE;
+        }
 
         $this->info("Successfully saved icon [$icon] in family [$family] to [$path]");
 

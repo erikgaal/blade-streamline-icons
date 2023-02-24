@@ -23,7 +23,14 @@ class BladeStreamlineIcons
 
     public function family(string $name): IconFamily
     {
-        return new IconFamily($this->familyAliases[$name] ?? $name);
+        if ($family = $this->familyAliases[$name] ?? null) {
+            return new IconFamily(
+                name: $family,
+                alias: $name,
+            );
+        }
+
+        return new IconFamily(name: $name);
     }
 
     public function addFamilyAlias(string $alias, string $family): void
