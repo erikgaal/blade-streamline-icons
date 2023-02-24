@@ -39,6 +39,7 @@ class StreamlineApi
             ->get("/v3/icons/{$iconHash}/download", [
                 'format' => 'SVG',
                 'size' => 48,
+                'responsive' => true,
                 'colors' => '"#000000":"currentColor"',
                 'outlined' => false,
                 'jsx' => false,
