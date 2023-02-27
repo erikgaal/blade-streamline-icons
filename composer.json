@@ -20,6 +20,7 @@
         "blade-ui-kit/blade-icons": "^1.0",
         "firebase/php-jwt": "^5.0 | ^6.0",
         "illuminate/contracts": "^9.0 | ^10.0",
+        "spatie/ignition": "^1.4",
         "spatie/laravel-package-tools": "^1.14.0"
     },
     "require-dev": {

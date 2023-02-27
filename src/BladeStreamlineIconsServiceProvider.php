@@ -2,11 +2,15 @@
 
 namespace ErikGaal\BladeStreamlineIcons;
 
+use BladeUI\Icons\Factory;
 use BladeUI\Icons\Factory as BladeIconsFactory;
 use ErikGaal\BladeStreamlineIcons\Commands\AccountCommand;
 use ErikGaal\BladeStreamlineIcons\Commands\GetCommand;
 use ErikGaal\BladeStreamlineIcons\Commands\LoginCommand;
 use ErikGaal\BladeStreamlineIcons\Commands\SaveCommand;
+use ErikGaal\BladeStreamlineIcons\Solutions\DownloadIconSolution;
+use ErikGaal\BladeStreamlineIcons\Solutions\SolutionProviders\StreamlineBladeIconSolutionProvider;
+use Spatie\Ignition\Contracts\SolutionProviderRepository;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
@@ -49,5 +53,14 @@ class BladeStreamlineIconsServiceProvider extends PackageServiceProvider
         $this->app->bind(StreamlineCredentials::class, function () {
             return StreamlineCredentials::loadFromFile();
         });
+    }
+
+    public function packageBooted()
+    {
+        if ($this->app->bound(SolutionProviderRepository::class)) {
+            $this->app->make(SolutionProviderRepository::class)->registerSolutionProviders([
+                StreamlineBladeIconSolutionProvider::class,
+            ]);
+        }
     }
 }
