@@ -3,6 +3,9 @@
 namespace ErikGaal\BladeStreamlineIcons;
 
 use ErikGaal\BladeStreamlineIcons\Exceptions\IconAlreadyExistsException;
+use ErikGaal\BladeStreamlineIcons\Exceptions\IconNotFoundException;
+use ErikGaal\BladeStreamlineIcons\Exceptions\OptimizationNotAvailable;
+use RuntimeException;
 
 class BladeStreamlineIcons
 {
@@ -10,20 +13,22 @@ class BladeStreamlineIcons
 
     public function __construct(
         private readonly StreamlineApi $api,
-    ) {}
+        private readonly Optimizer $optimizer = new Optimizer(),
+    ) {
+    }
 
-    public function download(IconFamily $family, string $icon): ?string
+    public function download(IconFamily $family, string $icon): string
     {
         $icon = $this->api->search($family, $icon)->firstWhere('slug', $icon);
 
         if (! $icon) {
-            return null;
+            throw new IconNotFoundException("Could not find icon [$icon] in family [$family].");
         }
 
         return $this->api->download($icon['hash']);
     }
 
-    public function save(IconFamily $family, string $icon, string $path = null, bool $overwrite = false): void
+    public function save(IconFamily $family, string $icon, string $path = null, bool $optimize = false, bool $overwrite = false): void
     {
         $basePath = config('blade-streamline-icons.path');
         $path = $this->joinPaths($basePath, $path);
@@ -36,9 +41,17 @@ class BladeStreamlineIcons
             throw new IconAlreadyExistsException("File [$path] already exists. Use --force to overwrite.");
         }
 
-        $icon = $this->download($family, $icon);
+        $icon = $this->download(family: $family, icon: $icon);
 
         file_put_contents($path, $icon);
+
+        if ($optimize) {
+            if (! $this->optimizer->canOptimize()) {
+                throw new OptimizationNotAvailable('Optimizing SVGs requires the `svgo` binary to be installed.');
+            }
+
+            $this->optimizer->optimize($path);
+        }
     }
 
     public function family(string $name): IconFamily
