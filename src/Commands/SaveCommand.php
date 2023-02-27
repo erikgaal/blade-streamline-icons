@@ -5,6 +5,7 @@ namespace ErikGaal\BladeStreamlineIcons\Commands;
 use ErikGaal\BladeStreamlineIcons\BladeStreamlineIcons;
 use ErikGaal\BladeStreamlineIcons\Exceptions\IconAlreadyExistsException;
 use ErikGaal\BladeStreamlineIcons\Exceptions\IconNotFoundException;
+use ErikGaal\BladeStreamlineIcons\Exceptions\OptimizationNotAvailable;
 use ErikGaal\BladeStreamlineIcons\Optimizer;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Storage;
