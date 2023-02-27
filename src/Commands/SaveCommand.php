@@ -17,7 +17,7 @@ class SaveCommand extends Command
 
     public $description = 'Save the Streamline icon';
 
-    public function handle(BladeStreamlineIcons $streamline, Optimizer $optimizer): int
+    public function handle(BladeStreamlineIcons $streamline): int
     {
         $icon = $this->argument('icon');
         $family = $streamline->family($this->argument('family'));
