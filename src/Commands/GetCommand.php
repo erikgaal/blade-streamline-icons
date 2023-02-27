@@ -4,6 +4,7 @@ namespace ErikGaal\BladeStreamlineIcons\Commands;
 
 use ErikGaal\BladeStreamlineIcons\BladeStreamlineIcons;
 use Illuminate\Console\Command;
+use Illuminate\Support\Str;
 
 class GetCommand extends Command
 {
@@ -13,7 +14,7 @@ class GetCommand extends Command
 
     public function handle(BladeStreamlineIcons $streamline): int
     {
-        $icon = $this->argument('icon');
+        $icon = Str::slug($this->argument('icon'));
         $family = $streamline->family($this->argument('family'));
 
         $result = $streamline->download($family, $icon);

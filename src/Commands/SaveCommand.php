@@ -9,6 +9,7 @@ use ErikGaal\BladeStreamlineIcons\Exceptions\OptimizationNotAvailable;
 use ErikGaal\BladeStreamlineIcons\Optimizer;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 use RuntimeException;
 
 class SaveCommand extends Command
@@ -19,7 +20,7 @@ class SaveCommand extends Command
 
     public function handle(BladeStreamlineIcons $streamline): int
     {
-        $icon = $this->argument('icon');
+        $icon = Str::slug($this->argument('icon'));
         $family = $streamline->family($this->argument('family'));
 
         $name = $family . '/' . ($this->option('as') ?? $icon);
