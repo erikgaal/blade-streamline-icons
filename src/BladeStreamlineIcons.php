@@ -19,13 +19,13 @@ class BladeStreamlineIcons
 
     public function download(IconFamily $family, string $icon): string
     {
-        $icon = $this->api->search($family, $icon)->firstWhere('slug', $icon);
+        $result = $this->api->search($family, $icon)->firstWhere('slug', $icon);
 
-        if (! $icon) {
+        if (! $result) {
             throw new IconNotFoundException("Could not find icon [$icon] in family [$family].");
         }
 
-        return $this->api->download($icon['hash']);
+        return $this->api->download($result['hash']);
     }
 
     public function save(IconFamily $family, string $icon, string $path = null, bool $optimize = false, bool $overwrite = false): void
