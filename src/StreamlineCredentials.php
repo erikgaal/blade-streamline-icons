@@ -9,8 +9,7 @@ class StreamlineCredentials
     public function __construct(
         private JWT $token,
         private string $refreshToken,
-    ) {
-    }
+    ) {}
 
     public function getToken(): string
     {
@@ -44,7 +43,9 @@ class StreamlineCredentials
     {
         $file = file_get_contents(base_path('.streamline-icons.json'));
 
-        if (! $file) return null;
+        if (! $file) {
+            return null;
+        }
 
         $content = json_decode($file, associative: true);
 

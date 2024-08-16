@@ -6,11 +6,8 @@ use ErikGaal\BladeStreamlineIcons\BladeStreamlineIcons;
 use ErikGaal\BladeStreamlineIcons\Exceptions\IconAlreadyExistsException;
 use ErikGaal\BladeStreamlineIcons\Exceptions\IconNotFoundException;
 use ErikGaal\BladeStreamlineIcons\Exceptions\OptimizationNotAvailable;
-use ErikGaal\BladeStreamlineIcons\Optimizer;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-use RuntimeException;
 
 class SaveCommand extends Command
 {
@@ -23,8 +20,8 @@ class SaveCommand extends Command
         $icon = Str::slug($this->argument('icon'));
         $family = $streamline->family($this->argument('family'));
 
-        $name = $family . '/' . ($this->option('as') ?? $icon);
-        $path = $name . ".svg";
+        $name = $family.'/'.($this->option('as') ?? $icon);
+        $path = $name.'.svg';
 
         try {
             $streamline->save(
@@ -43,7 +40,7 @@ class SaveCommand extends Command
 
             return self::FAILURE;
         } catch (OptimizationNotAvailable) {
-            $this->error("Optimizing SVGs requires the `svgo` binary to be installed. Use --preserve to skip optimization.");
+            $this->error('Optimizing SVGs requires the `svgo` binary to be installed. Use --preserve to skip optimization.');
 
             return self::FAILURE;
         }

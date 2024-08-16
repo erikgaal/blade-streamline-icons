@@ -4,7 +4,4 @@ namespace ErikGaal\BladeStreamlineIcons\Exceptions;
 
 use RuntimeException;
 
-class IconAlreadyExistsException extends RuntimeException
-{
-
-}
+class IconAlreadyExistsException extends RuntimeException {}

@@ -2,9 +2,9 @@
 
 namespace ErikGaal\BladeStreamlineIcons\Tests;
 
+use ErikGaal\BladeStreamlineIcons\BladeStreamlineIconsServiceProvider;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Orchestra\Testbench\TestCase as Orchestra;
-use ErikGaal\BladeStreamlineIcons\BladeStreamlineIconsServiceProvider;
 
 class TestCase extends Orchestra
 {
