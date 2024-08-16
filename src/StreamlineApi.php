@@ -12,8 +12,7 @@ class StreamlineApi
     public function __construct(
         private readonly StreamlineCredentials $auth,
         private readonly string $baseUrl = 'https://api.streamlinehq.com',
-    ) {
-    }
+    ) {}
 
     private function buildRequest(): PendingRequest
     {

@@ -4,6 +4,4 @@ namespace ErikGaal\BladeStreamlineIcons\Exceptions;
 
 use RuntimeException;
 
-class IconNotFoundException extends RuntimeException
-{
-}
+class IconNotFoundException extends RuntimeException {}

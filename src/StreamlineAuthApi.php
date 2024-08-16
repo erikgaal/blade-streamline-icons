@@ -11,8 +11,7 @@ class StreamlineAuthApi
     public function __construct(
         public readonly string $baseUrl = 'https://identitytoolkit.googleapis.com/',
         private readonly string $key = 'AIzaSyCHKw0Ss271_0_7bpBfOL_M-K4fCn5omM0',
-    ) {
-    }
+    ) {}
 
     private function buildRequest(): PendingRequest
     {

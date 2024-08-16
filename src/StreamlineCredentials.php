@@ -9,8 +9,7 @@ class StreamlineCredentials
     public function __construct(
         private JWT $token,
         private string $refreshToken,
-    ) {
-    }
+    ) {}
 
     public function getToken(): string
     {

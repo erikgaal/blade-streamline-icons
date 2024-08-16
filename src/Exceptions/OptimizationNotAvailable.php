@@ -4,6 +4,4 @@ namespace ErikGaal\BladeStreamlineIcons\Exceptions;
 
 use RuntimeException;
 
-class OptimizationNotAvailable extends RuntimeException
-{
-}
+class OptimizationNotAvailable extends RuntimeException {}

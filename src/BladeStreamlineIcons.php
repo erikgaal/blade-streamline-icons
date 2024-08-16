@@ -12,9 +12,8 @@ class BladeStreamlineIcons
 
     public function __construct(
         private readonly StreamlineApi $api,
-        private readonly Optimizer $optimizer = new Optimizer(),
-    ) {
-    }
+        private readonly Optimizer $optimizer = new Optimizer,
+    ) {}
 
     public function download(IconFamily $family, string $icon): string
     {
