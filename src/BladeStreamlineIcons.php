@@ -5,7 +5,6 @@ namespace ErikGaal\BladeStreamlineIcons;
 use ErikGaal\BladeStreamlineIcons\Exceptions\IconAlreadyExistsException;
 use ErikGaal\BladeStreamlineIcons\Exceptions\IconNotFoundException;
 use ErikGaal\BladeStreamlineIcons\Exceptions\OptimizationNotAvailable;
-use RuntimeException;
 
 class BladeStreamlineIcons
 {
@@ -28,7 +27,7 @@ class BladeStreamlineIcons
         return $this->api->download($icon['hash']);
     }
 
-    public function save(IconFamily $family, string $icon, string $path = null, bool $optimize = false, bool $overwrite = false): void
+    public function save(IconFamily $family, string $icon, ?string $path = null, bool $optimize = false, bool $overwrite = false): void
     {
         $basePath = config('blade-streamline-icons.path');
         $path = $this->joinPaths($basePath, $path);

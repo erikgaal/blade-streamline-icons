@@ -2,11 +2,8 @@
 
 namespace ErikGaal\BladeStreamlineIcons\Commands;
 
-use ErikGaal\BladeStreamlineIcons\BladeStreamlineIcons;
 use ErikGaal\BladeStreamlineIcons\StreamlineAuthApi;
 use Illuminate\Console\Command;
-use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Output\OutputInterface;
 
 class LoginCommand extends Command
 {

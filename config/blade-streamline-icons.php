@@ -14,5 +14,5 @@ return [
         'flex' => 'flex-free',
         'plump' => 'plump-free',
         'sharp' => 'sharp-free',
-    ]
+    ],
 ];

@@ -8,9 +8,8 @@ class JWT
 
     public function __construct(
         public readonly string $token,
-    )
-    {
-        [, $payloadb64,] = explode('.', $this->token);
+    ) {
+        [, $payloadb64] = explode('.', $this->token);
         $payloadRaw = self::urlsafeB64Decode($payloadb64);
         $this->payload = (object) self::jsonDecode($payloadRaw);
     }
@@ -27,6 +26,7 @@ class JWT
             $padlen = 4 - $remainder;
             $input .= str_repeat('=', $padlen);
         }
+
         return base64_decode(strtr($input, '-_', '+/'));
     }
 

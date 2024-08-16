@@ -8,19 +8,19 @@ class Optimizer
 {
     public function canOptimize(): bool
     {
-        $process = Process::fromShellCommandline("svgo --version");
+        $process = Process::fromShellCommandline('svgo --version');
         $process->run();
 
         return $process->isSuccessful();
     }
 
-    public function optimize(string $inputPath, string $outputPath = null): void
+    public function optimize(string $inputPath, ?string $outputPath = null): void
     {
         Process::fromShellCommandline($this->getCommand($inputPath, $outputPath ?? $inputPath))->mustRun();
     }
 
     private function getCommand(string $inputPath, string $outputPath): string
     {
-        return sprintf("svgo --input=%s --output=%s", escapeshellarg($inputPath), escapeshellarg($outputPath));
+        return sprintf('svgo --input=%s --output=%s', escapeshellarg($inputPath), escapeshellarg($outputPath));
     }
 }
