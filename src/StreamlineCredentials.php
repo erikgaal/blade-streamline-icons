@@ -42,7 +42,11 @@ class StreamlineCredentials
 
     public static function loadFromFile(): ?self
     {
-        $file = file_get_contents(base_path('.streamline-icons.json'));
+        $filepath = base_path('.streamline-icons.json');
+
+        if (! file_exists($filepath)) return null;
+
+        $file = file_get_contents($filepath);
 
         if (! $file) return null;
 
