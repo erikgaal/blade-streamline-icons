@@ -36,14 +36,10 @@ class BladeStreamlineIconsServiceProvider extends PackageServiceProvider
             ]);
         });
 
-        $this->app->singleton(BladeStreamlineIcons::class, function () {
-            $streamline = new BladeStreamlineIcons($this->app->make(StreamlineApi::class));
-
+        $this->callAfterResolving(BladeStreamlineIcons::class, function (BladeStreamlineIcons $streamline) {
             foreach (config('blade-streamline-icons.family_aliases') as $alias => $family) {
                 $streamline->addFamilyAlias($alias, $family);
             }
-
-            return $streamline;
         });
 
         $this->app->bind(StreamlineCredentials::class, function () {
