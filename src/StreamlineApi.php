@@ -24,18 +24,20 @@ class StreamlineApi
     public function search(IconFamily $family, string $query): Collection
     {
         return $this->buildRequest()
-            ->get('/v2/search', [
+            ->get('/v4/search', [
                 'family' => $family->name,
                 'query' => $query,
             ])
             ->throw()
-            ->collect('data.icons.Search Results');
+            ->collect('results')
+            ->pluck('categories.*.subcategories.*.icons')
+            ->flatten(2);
     }
 
     public function download(string $iconHash): string
     {
         $response = $this->buildRequest()
-            ->get("/v3/icons/{$iconHash}/download", [
+            ->get("/v4/icons/{$iconHash}/download", [
                 'format' => 'SVG',
                 'size' => 48,
                 'colors' => '"#000000":"currentColor"',
