@@ -2,6 +2,23 @@
 
 All notable changes to `blade-streamline-icons` will be documented in this file.
 
+## v1.0.4 - 2026-02-09
+
+### What's Changed
+
+* chore: style by @erikgaal in https://github.com/erikgaal/blade-streamline-icons/pull/17
+* build: fix CI by @erikgaal in https://github.com/erikgaal/blade-streamline-icons/pull/16
+* fix: make it work with new api by @robertvansteen in https://github.com/erikgaal/blade-streamline-icons/pull/8
+* Add Laravel 12 Support by @joelbutcher in https://github.com/erikgaal/blade-streamline-icons/pull/19
+
+### New Contributors
+
+* @erikgaal made their first contribution in https://github.com/erikgaal/blade-streamline-icons/pull/17
+* @robertvansteen made their first contribution in https://github.com/erikgaal/blade-streamline-icons/pull/8
+* @joelbutcher made their first contribution in https://github.com/erikgaal/blade-streamline-icons/pull/19
+
+**Full Changelog**: https://github.com/erikgaal/blade-streamline-icons/compare/v1.0.3...v1.0.4
+
 ## v1.0.3 - 2026-02-09
 
 ### What's Changed
