@@ -2,6 +2,14 @@
 
 All notable changes to `blade-streamline-icons` will be documented in this file.
 
+## v1.0.5 - 2026-03-23
+
+### What's Changed
+
+* chore: Support Laravel 13 by @joelbutcher in https://github.com/erikgaal/blade-streamline-icons/pull/20
+
+**Full Changelog**: https://github.com/erikgaal/blade-streamline-icons/compare/v1.0.4...v1.0.5
+
 ## v1.0.4 - 2026-02-09
 
 ### What's Changed
