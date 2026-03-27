@@ -2,6 +2,14 @@
 
 All notable changes to `blade-streamline-icons` will be documented in this file.
 
+## v2.0.0 - 2026-03-27
+
+### What's Changed
+
+* Update firebase/php-jwt version constraint to include 7.0 by @joelbutcher in https://github.com/erikgaal/blade-streamline-icons/pull/21
+
+**Full Changelog**: https://github.com/erikgaal/blade-streamline-icons/compare/v1.0.5...v2.0.0
+
 ## v1.0.5 - 2026-03-23
 
 ### What's Changed
